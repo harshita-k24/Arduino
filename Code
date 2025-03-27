@@ -1,0 +1,20 @@
+#define LDR_PIN A0  // LDR sensor connected to Analog pin A0
+#define LED_PIN 9   // LED connected to digital pin 9
+
+void setup() {
+  pinMode(LED_PIN, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int lightValue = analogRead(LDR_PIN);
+  Serial.println(lightValue); // Print light value to Serial Monitor
+
+  if (lightValue < 500) { // Adjust threshold as per environment
+    digitalWrite(LED_PIN, HIGH); // Turn ON LED
+  } else {
+    digitalWrite(LED_PIN, LOW);  // Turn OFF LED
+  }
+
+  delay(500);
+}
