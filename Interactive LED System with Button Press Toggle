@@ -1,0 +1,19 @@
+#define BUTTON_PIN 2  // Button connected to digital pin 2
+#define LED_PIN 13    // LED connected to digital pin 13
+
+bool ledState = false;
+
+void setup() {
+  pinMode(BUTTON_PIN, INPUT_PULLUP); // Use internal pull-up resistor
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  if (digitalRead(BUTTON_PIN) == LOW) { // Button pressed
+    delay(200); // Debounce delay
+    ledState = !ledState; // Toggle LED state
+    digitalWrite(LED_PIN, ledState ? HIGH : LOW);
+    
+    while (digitalRead(BUTTON_PIN) == LOW); // Wait for button release
+  }
+}
